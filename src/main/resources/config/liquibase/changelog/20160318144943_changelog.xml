@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="sozl656 (generated)" id="1458312589238-1">
+        <createTable tableName="CTB_LAB_TEST">
+            <column autoIncrement="true" name="ID" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="CTB_LAB_TESTPK"/>
+            </column>
+            <column name="created_by" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_modified_by" type="VARCHAR(50)"/>
+            <column name="last_modified_date" type="timestamp"/>
+            <column name="DESCRIPTION" type="VARCHAR(255)"/>
+            <column name="END_DATE" type="timestamp"/>
+            <column name="NAME" type="VARCHAR(255)"/>
+            <column name="START_DATE" type="timestamp"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="sozl656 (generated)" id="1458312589238-2">
+        <createTable tableName="CTB_LAB_TEST_MARKER">
+            <column autoIncrement="true" name="ID" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="CTB_LAB_TEST_MARKERPK"/>
+            </column>
+            <column name="created_by" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_modified_by" type="VARCHAR(50)"/>
+            <column name="last_modified_date" type="timestamp"/>
+            <column name="DESCRIPTION" type="VARCHAR(255)"/>
+            <column name="NAME" type="VARCHAR(255)"/>
+            <column name="REF_VALUE" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="sozl656 (generated)" id="1458312589238-3">
+        <createTable tableName="CTB_LAB_TEST_RESULT">
+            <column autoIncrement="true" name="ID" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="CTB_LAB_TEST_RESULTPK"/>
+            </column>
+            <column name="created_by" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_modified_by" type="VARCHAR(50)"/>
+            <column name="last_modified_date" type="timestamp"/>
+            <column name="VALUE" type="VARCHAR(255)"/>
+            <column name="LAB_TEST" type="BIGINT"/>
+            <column name="MARKER" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="sozl656 (generated)" id="1458312589238-4">
+        <createTable tableName="CTB_LAB_TEST_SUMMARY">
+            <column autoIncrement="true" name="ID" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="CTB_LAB_TEST_SUMMARYPK"/>
+            </column>
+            <column name="created_by" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_modified_by" type="VARCHAR(50)"/>
+            <column name="last_modified_date" type="timestamp"/>
+            <column name="LAB_TEST" type="BIGINT"/>
+            <column name="USER" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="sozl656 (generated)" id="1458312589238-5">
+        <addForeignKeyConstraint baseColumnNames="USER" baseTableName="CTB_LAB_TEST_SUMMARY" constraintName="FK_6x6mq1cysque21s799o17xqw" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="sozl656 (generated)" id="1458312589238-6">
+        <addForeignKeyConstraint baseColumnNames="ID" baseTableName="CTB_LAB_TEST_MARKER" constraintName="FK_byyiofflgou2i19domk724u8d" deferrable="false" initiallyDeferred="false" referencedColumnNames="ID" referencedTableName="CTB_LAB_TEST"/>
+    </changeSet>
+    <changeSet author="sozl656 (generated)" id="1458312589238-7">
+        <addForeignKeyConstraint baseColumnNames="LAB_TEST" baseTableName="CTB_LAB_TEST_SUMMARY" constraintName="FK_ighht64if1yjtsif3qrdml0ne" deferrable="false" initiallyDeferred="false" referencedColumnNames="ID" referencedTableName="CTB_LAB_TEST"/>
+    </changeSet>
+    <changeSet author="sozl656 (generated)" id="1458312589238-8">
+        <addForeignKeyConstraint baseColumnNames="LAB_TEST" baseTableName="CTB_LAB_TEST_RESULT" constraintName="FK_pivacj94w1kxf9db3xql8hs5b" deferrable="false" initiallyDeferred="false" referencedColumnNames="ID" referencedTableName="CTB_LAB_TEST"/>
+    </changeSet>
+    <changeSet author="sozl656 (generated)" id="1458312589238-9">
+        <addForeignKeyConstraint baseColumnNames="MARKER" baseTableName="CTB_LAB_TEST_RESULT" constraintName="FK_torc9w6v9rdvh1m6gia2uvf73" deferrable="false" initiallyDeferred="false" referencedColumnNames="ID" referencedTableName="CTB_LAB_TEST_MARKER"/>
+    </changeSet>
+    <changeSet author="sozl656 (generated)" id="1458312589238-10">
+        <dropDefaultValue columnDataType="timestamp" columnName="created_date" tableName="jhi_user"/>
+    </changeSet>
+</databaseChangeLog>
